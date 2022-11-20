@@ -1,33 +1,45 @@
 #include<iostream>
 #include "item.h"
+#include<algorithm>
 using namespace std;
-item::item(rule m) {
-    if (m.r_r == "@") {
-        item_l.push_back(m.r_l);
-        item_r.push_back(".");
-        len++;
-    }
-    else {
-        for (int i = 0; i <= m.r_r.length(); i++) {
-            string temp_l;
-            string temp_r;
-            for (int j = 0; j < i; j++) {
-                temp_l.push_back(m.r_r[j]);
-            }
-            for (int j = i; j < m.r_r.length(); j++) {
-                temp_r.push_back(m.r_r[j]);
-            }
-            string a = temp_l + "." + temp_r;
-            item_l.push_back(m.r_l);
-            item_r.push_back(a);
-            len++;
-        }
-    }
-};
 
+void item::push_rule(rule* r) {
+	I.push_back(r);
+	len++;
+}
+void item::push_map(pair<item*,string> a, item* b) {
+	mp[a] = b;
+}
+
+bool item::operator==(const item b) {
+	int flag = 1;
+	if (len != b.len) {
+		return false;
+	}
+	for (int i = 0; i < len; i++) {
+		int ff = 0;
+		for (int j = 0; j < b.len; j++) {
+			if (*I[i] == *b.I[j]) {
+				ff = 1;
+			}
+		}
+		flag = ff;
+		if (flag == 0) break;
+	}
+	return flag ;
+}
 void item::show() {
-    for (int i = 0; i < len; i++) {
-        std::cout << item_l[i] << " -> " << item_r[i] << std::endl;
-    }
-};
+	for (int i = 0; i < len; i++) {
+		I[i]->show();
+	}
+}
 
+void item::show_all() {
+	cout <<"I" << numm << ":" << endl;
+	for (int i = 0; i < len; i++) {
+		I[i]->show();
+	}
+	for (auto i : mp) {
+		cout << i.first.second <<":" <<i.second->numm << endl;
+	}
+}

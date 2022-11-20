@@ -24,6 +24,9 @@
     <ClCompile Include="rule.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="table.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rule.h">
@@ -32,5 +35,13 @@
     <ClInclude Include="item.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="table.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>
