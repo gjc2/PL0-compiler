@@ -21,10 +21,11 @@ void rule::back_rule() {
 		r_l.pop_back();
 		r_r.pop_back();
 		len--;
-		if (templ =="@") {
+		if (tempr =="@") {
 			r_l.push_back(templ);
 			r_r.push_back(".");
-
+			len++;
+			return;
 		}
 		else {
 			for (int i = 0; i <= tempr.length(); i++) {

@@ -1,5 +1,6 @@
 #include "table.h"
 #include <iomanip>
+#include <fstream>
 using namespace std;
 table::table(vector<item*>a,vector<string>T,vector<string>N,vector<rule*>origin) {
 	for (int i = 0; i < a.size(); i++) {
@@ -11,21 +12,21 @@ table::table(vector<item*>a,vector<string>T,vector<string>N,vector<rule*>origin)
 	for (int i = 0; i < N.size(); i++) {
 		Goto.push_back(N[i]);
 	}
-	for (int i = 0; i < state.size(); i++) {
-		for (int j = 0; j < action.size(); j++)
-			f[{state[i], action[j]}].push_back("  ");
-		for(int j=0;j<Goto.size();j++)
-			f[{state[i], Goto[j]}].push_back("  ");
-	}
+	//for (int i = 0; i < state.size(); i++) {
+	//	for (int j = 0; j < action.size(); j++)
+	//		f[{state[i], action[j]}].push_back("  ");
+	//	for(int j=0;j<Goto.size();j++)
+	//		f[{state[i], Goto[j]}].push_back("  ");
+	//}
 	//添加转移
 	for (int i = 0; i < a.size(); i++) {
 		for (auto j : a[i]->mp) {
-			if (j.first.second >= "A"&& j.first.second <= "Z") {//要改，改成判断是终结符还是非终结符
-				f[{a[i]->numm, j.first.second}].pop_back();
+			if ((j.first.second >= "A"&& j.first.second <= "Z")|| (j.first.second >= "0" && j.first.second <= "3")) {//要改，改成判断是终结符还是非终结符
+				//f[{a[i]->numm, j.first.second}].pop_back();
 				f[{a[i]->numm, j.first.second}].push_back(to_string(j.second->numm));
 			}
 			else {
-				f[{a[i]->numm, j.first.second}].pop_back();
+				//f[{a[i]->numm, j.first.second}].pop_back();
 				f[{a[i]->numm, j.first.second}].push_back("S" + to_string(j.second->numm));
 			}
 				
@@ -40,13 +41,17 @@ table::table(vector<item*>a,vector<string>T,vector<string>N,vector<rule*>origin)
 			if (it == a[i]->I[j]->r_r[0].end()) {//形如A->BC.
 				string templ = a[i]->I[j]->r_l[0];
 				string tempr = a[i]->I[j]->r_r[0];
-				tempr.pop_back();//变成A->BC
+				if (a[i]->I[j]->r_r[0] == ".") {
+					tempr = ".";
+				}
+				else 
+					tempr.pop_back();//变成A->B
 				rule* temp = new rule(templ, tempr);
 				for (int k = 0; k < origin.size(); k++) {
 					if (*origin[k] == *temp) {
 						int num = origin[k]->numm;
 						for (int u = 0; u < T.size(); u++) {
-							f[{a[i]->numm, T[u]}].pop_back();
+							
 							f[{a[i]->numm, T[u]}].push_back("R" + to_string(num));
 						
 						}
@@ -55,31 +60,51 @@ table::table(vector<item*>a,vector<string>T,vector<string>N,vector<rule*>origin)
 			}
 		}
 	}
-	f[{1, "#"}].pop_back();
 	f[{1, "#"}].push_back("ACC");
 }
 
 void table::show() {
-	cout <<setw(8) << "       ";
-	for (int j = 0; j < action.size(); j++) {
-		cout << action[j] << "      ";
-	}
-	for (int j = 0; j < Goto.size(); j++) {
-		cout << Goto[j] << "      ";
-	}
-	cout << endl;
+	//cout <<setw(8) << "       ";
+	//for (int j = 0; j < action.size(); j++) {
+	//	cout << action[j] << "      ";
+	//}
+	//for (int j = 0; j < Goto.size(); j++) {
+	//	cout << Goto[j] << "      ";
+	//}
+	//cout << endl;
+	//for (int i = 0; i < state.size(); i++) {
+	//	cout << setw(2) << state[i] << "      ";
+	//	for (int j = 0; j < action.size(); j++) {
+	//		
+	//		for (int k = 0; k < f[{state[i], action[j]}].size(); k++) {
+	//				cout << f[{state[i], action[j]}][k] << "     ";
+	//		}
+	//	}
+	//	for (int j = 0; j < Goto.size(); j++) {
+	//		for(int k=0;k<f[{state[i], Goto[j]}].size();k++)
+	//		cout << f[{state[i],Goto[j]}][k] << "     ";
+	//	}
+	//	cout << endl;
+	//}
+	ofstream out("table.csv");
+	out << ",";
+	for (int j = 0; j < action.size(); j++) out << action[j] << ",";
+	for (int j = 0; j < Goto.size(); j++) out << Goto[j] << ",";
+	out << endl;
 	for (int i = 0; i < state.size(); i++) {
-		cout << setw(2) << state[i] << "      ";
+		out << state[i]<<",";
 		for (int j = 0; j < action.size(); j++) {
-			
 			for (int k = 0; k < f[{state[i], action[j]}].size(); k++) {
-					cout << f[{state[i], action[j]}][k] << "     ";
+				out << f[{state[i], action[j]}][k] << ";";
 			}
+			out << ",";
 		}
 		for (int j = 0; j < Goto.size(); j++) {
-			for(int k=0;k<f[{state[i], Goto[j]}].size();k++)
-			cout << f[{state[i],Goto[j]}][k] << "     ";
+			for (int k = 0; k < f[{state[i], Goto[j]}].size(); k++) {
+				out << f[{state[i], Goto[j]}][k] << " ";
+			}
+			out << ",";
 		}
-		cout << endl;
+		out << endl;
 	}
 }
