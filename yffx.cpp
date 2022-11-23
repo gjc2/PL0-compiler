@@ -17,7 +17,7 @@ int main() {
     set_type();
     vector<rule*>x;
     vector<rule*>y;
-    x.push_back(new rule("&", "A"));
+    x.push_back(new rule("&", "A。"));//我们把。看成.为了和后继规则中的.区分
     x.push_back(new rule("A", "B"));
     x.push_back(new rule("B", "FIKM"));
     x.push_back(new rule("F", "C"));
@@ -65,7 +65,7 @@ int main() {
     x.push_back(new rule("R", "m(p1)"));
     x.push_back(new rule("S", "n(p1)"));
 
-    y.push_back(new rule("&", "A"));
+    y.push_back(new rule("&", "A。"));
     y.push_back(new rule("A", "B"));
     y.push_back(new rule("B", "FIKM"));
     y.push_back(new rule("F", "C"));
@@ -126,7 +126,7 @@ int main() {
     cout << "all:" << endl;
     for (int i = 0; i < dfa.size(); i++) dfa[i]->show_all();
     vector<string>N = { "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3"};
-    vector<string>T = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","#",",",";","(",")"};
+    vector<string>T = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","#",",",";","(",")","。"};
     table* test = new table(dfa, T, N, y);
     test->show();
 }

@@ -75,23 +75,27 @@ s: <关系运算符>
 17，18，19也是
 25,26也用不上
 ##
-1.<程序> -> <分程序>
-	A->B
+属性文法
+code 综合属性，表示代码
+value 综合属性，表示值
+##
+1.<程序> -> <分程序>。//A.code=B.code
+	A->B。
 2.<分程序> -> [<常量说明部分>][<变量说明部分>][<过程说明部分>]<语句>
-	B->FIKM
-	F->C
-	F->NULL
-	I->D
-	I->NULL
-	K->E
-	K->NULL
+	B->FIKM		//B.code=F.code+I.code+K.code+M.code 几个代码段拼起来
+	F->C		//F.code=C.code
+	F->NULL		//F.code=NULL
+	I->D		//I.code=D.code
+	I->NULL		//I.code=NULL
+	K->E		//K.code=E.code
+	K->NULL		//K.code=NULL
 ### 常量说明部分：
 3.<常量说明部分> -> const<常量定义>{,<常量定义>};
-	C->aG0;
+	C->aG0;		//
 	0->,G0
 	0->NULL
 4.<常量定义> -> <标识符>=<无符号整数>
-	G->p=o
+	G->p=o		//table.insert(name:p,kind:constant,val:o.value)
 //5.<无符号整数> -> <数字>{<数字>}
 //	//I->JJ'
 //	//J'=JJ'
@@ -168,8 +172,8 @@ s: <关系运算符>
 //26.<数字>->0|...|9
 //	//J->0|...|1
 
-
-x.push_back(new rule("&", "A"));
+语法：
+x.push_back(new rule("&", "A。"));
 x.push_back(new rule("A", "B"));
 x.push_back(new rule("B", "FIKM"));
 x.push_back(new rule("F", "C"));
