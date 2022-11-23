@@ -128,20 +128,12 @@ int main() {
     vector<string>T = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","#",",",";","(",")","!"};
     table* test = new table(dfa, T, N, y);
     test->show();
-    vector<string>xx = { "a","p","q","o",";","b","p",",","p",",",
-        "p",";","c","p",";","b","p",";","e","p","d","p","r","o",";",
-        "p","d","p","r","o",";","h","p","q","p","i","p","d","p","s","p",
-        "f",";","e","m","(","p",",","p",")",";","n","(","p",",","p",",","p",")",
-        ";","j","p",";","k","g","p","l","p","d","s","p","s","o","f","。" };
-    vector<string>yy;
-    int lenn = xx.size()-1;
-    for (int i = 0; i < xx.size(); i++) {
-        yy.push_back(xx[lenn]);
-        xx.pop_back();
-        lenn--;
-    }
+    vector<string>xxx = { "a","p","=","o",";","b","p",",","p",";","c","p",";",
+        "e","p","d","p","s","p","f",";","e","m","(","p",")",";","k","p","q","q","o",
+        "l","e","j","p",";","n","(","o","r","p",")",";","m","(","p",")",";","f","f","!" };
+    reverse(xxx.begin(), xxx.end());
     gen* g = new gen();
-    g->in = yy;
+    g->in =xxx;
     g->g(*test, y);
 
 }
@@ -157,6 +149,7 @@ item* DFA_construct(vector<rule*>m,/*int level,*/ vector<rule*> add,item* fa) {
         string templ = a->I[j]->r_l[0];//某个规则的左边
         string tempr = a->I[j]->r_r[0];//某个规则的右边
         auto it = find(tempr.begin(), tempr.end(), '.');
+        auto itt=find(tempr.begin(), tempr.end(), '.');
         it++;
         if (it == tempr.end()) continue;
         string str = string(1, * it);
@@ -165,6 +158,11 @@ item* DFA_construct(vector<rule*>m,/*int level,*/ vector<rule*> add,item* fa) {
             //加入
             for (int i = 0; i < m.size(); i++) {//遍历所有的规则
                 for (int k = 0; k < m[i]->len; k++) {
+                    if (m[i]->r_l[k] == str && m[i]->r_r[k] == ".") {
+                        swap(*it, *itt);
+                        a->push_rule(new rule(m[i]->r_l[k], tempr));
+                        //swap(*it, *itt);
+                    }
                     if (m[i]->r_l[k] == str&&m[i]->r_r[k][0]=='.') {
                         a->push_rule(new rule(m[i]->r_l[k], m[i]->r_r[k]));
                     }

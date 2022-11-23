@@ -11,7 +11,7 @@ void gen::show() {
 		std::cout << sym[i] ;
 	}
 	std::cout << endl;
-	for (int i = 0; i < in.size(); i++) {
+	for (int i = in.size()-1; i >=0; i--) {
 		std::cout << in[i];
 	}
 	std::cout << endl;
@@ -19,8 +19,6 @@ void gen::show() {
 void gen::g(table t, vector<rule*>origin) {
 	state.push_back(0);
 	sym.push_back("#");
-	sym.push_back("b");
-	in.pop_back();
 	while (!in.empty()) {
 		//∂¡◊¥Ã¨’ª∂•∫Õ ‰»Î’ª∂•
 		int len1 = state.size() - 1;
@@ -63,15 +61,16 @@ void gen::g(table t, vector<rule*>origin) {
 				state.pop_back();
 			}
 			sym.push_back(r->r_l[0]);
+			len3++;
 			if (t.f[{state[len1], sym[len3]}].size() == 0) {
 				std::cout << "error" << endl;
 			}
 			int ss;
-			if (t.f[{state[len1], in[len2]}][0].length() == 2) {
-				ss = (t.f[{state[len1], in[len2]}][0][0] - '0') * 10 + t.f[{state[len1], in[len2]}][0][1] - '0';
+			if (t.f[{state[len1], sym[len3]}][0].length() == 2) {
+				ss = (t.f[{state[len1], sym[len3]}][0][0] - '0') * 10 + t.f[{state[len1], sym[len3]}][0][1] - '0';
 			}
 			else {
-				ss = t.f[{state[len1], in[len2]}][0][0] - '0';
+				ss = t.f[{state[len1], sym[len3]}][0][0] - '0';
 			}
 			state.push_back(ss);
 			std::cout << r->r_l[0] << "->";
