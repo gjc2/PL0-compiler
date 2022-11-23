@@ -27,6 +27,9 @@
     <ClCompile Include="table.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="gen.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rule.h">
@@ -36,6 +39,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="table.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gen.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="quadruple.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

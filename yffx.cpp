@@ -1,8 +1,7 @@
 ﻿#include <iostream>
 #include  <string>
 #include <vector>
-#include "table.h"
-
+#include "gen.h"
 
 using namespace std;
 
@@ -17,8 +16,8 @@ int main() {
     set_type();
     vector<rule*>x;
     vector<rule*>y;
-    x.push_back(new rule("&", "A。"));//我们把。看成.为了和后继规则中的.区分
-    x.push_back(new rule("A", "B"));
+    x.push_back(new rule("&", "A"));//我们把。看成.为了和后继规则中的.区分
+    x.push_back(new rule("A", "B!"));
     x.push_back(new rule("B", "FIKM"));
     x.push_back(new rule("F", "C"));
     x.push_back(new rule("F", "@"));
@@ -65,8 +64,8 @@ int main() {
     x.push_back(new rule("R", "m(p1)"));
     x.push_back(new rule("S", "n(p1)"));
 
-    y.push_back(new rule("&", "A。"));
-    y.push_back(new rule("A", "B"));
+    y.push_back(new rule("&", "A"));
+    y.push_back(new rule("A", "B!"));
     y.push_back(new rule("B", "FIKM"));
     y.push_back(new rule("F", "C"));
     y.push_back(new rule("F", "@"));
@@ -126,9 +125,25 @@ int main() {
     cout << "all:" << endl;
     for (int i = 0; i < dfa.size(); i++) dfa[i]->show_all();
     vector<string>N = { "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3"};
-    vector<string>T = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","#",",",";","(",")","。"};
+    vector<string>T = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","#",",",";","(",")","!"};
     table* test = new table(dfa, T, N, y);
     test->show();
+    vector<string>xx = { "a","p","q","o",";","b","p",",","p",",",
+        "p",";","c","p",";","b","p",";","e","p","d","p","r","o",";",
+        "p","d","p","r","o",";","h","p","q","p","i","p","d","p","s","p",
+        "f",";","e","m","(","p",",","p",")",";","n","(","p",",","p",",","p",")",
+        ";","j","p",";","k","g","p","l","p","d","s","p","s","o","f","。" };
+    vector<string>yy;
+    int lenn = xx.size()-1;
+    for (int i = 0; i < xx.size(); i++) {
+        yy.push_back(xx[lenn]);
+        xx.pop_back();
+        lenn--;
+    }
+    gen* g = new gen();
+    g->in = yy;
+    g->g(*test, y);
+
 }
 
 
@@ -138,7 +153,6 @@ item* DFA_construct(vector<rule*>m,/*int level,*/ vector<rule*> add,item* fa) {
     for (int j = 0; j < add.size(); j++) {
         a->push_rule(add[j]);
     }
-    cout << 1 << endl;
     for (int j = 0; j < a->len; j++) {//遍历该状态的所有规则
         string templ = a->I[j]->r_l[0];//某个规则的左边
         string tempr = a->I[j]->r_r[0];//某个规则的右边
