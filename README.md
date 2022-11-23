@@ -78,6 +78,8 @@ s: <关系运算符>
 属性文法
 code 综合属性，表示代码
 value 综合属性，表示值
+place 综合属性， 表示符号的名字
+sym  综合属性， 表示运算符号，如*/+-
 ##
 1.<程序> -> <分程序>。//A.code=B.code
 	A->B。
@@ -91,19 +93,21 @@ value 综合属性，表示值
 	K->NULL		//K.code=NULL
 ### 常量说明部分：
 3.<常量说明部分> -> const<常量定义>{,<常量定义>};
-	C->aG0;		//
-	0->,G0
+	C->aG0;		//table.insert(name: G.name,kind: constant,val:G.value,addr: )
+	0->,G0		//table.insert(name: G.name,kind: constant,val:G.value,addr: )
 	0->NULL
 4.<常量定义> -> <标识符>=<无符号整数>
-	G->p=o		//table.insert(name:p,kind:constant,val:o.value)
+	G->p=o		//table.insert(name:p,kind:constant,val:o.value,addr: )
 //5.<无符号整数> -> <数字>{<数字>}
 //	//I->JJ'
 //	//J'=JJ'
 //	//J'=NULL
 ### 变量说明部分：
 6.<变量说明部分>->var<标识符>{,<标识符>};
-	D->bH1;
-	1->,H1
+	D->bp1;		//table.insert(name: p.name,kind: variable,level:l,addr: d)
+					d=d+var.width
+	1->,p1		//table.insert(name: p.name,kind: variable,level:l,addr: d)
+					d=d+var.width
 	1->NULL
 //7.<标识符> -> <字母>{<字母>|<数字>}
 //	//H->KK'
@@ -116,11 +120,11 @@ value 综合属性，表示值
 	J->EJ
 	J->NULL
 9.<过程首部>->procedure<标识符>
-	L->cp
+	L->cp		//l=l+1
 ### 语句
 10.<语句> -> <赋值语句>|<条件语句>|<当型循环语句>
 	|<过程调用语句>|<读语句>|<写语句>|<复合语句>|<空>
-	M->N
+	M->N		//M.start=,M.end=
 	M->O
 	M->P
 	M->Q
@@ -129,28 +133,38 @@ value 综合属性，表示值
 	M->T
 	M->NULL
 11.<赋值语句>-><标识符>:=<表达式>
-	N->pdV
+	N->pdV		//find=look(p.name)
+				//if find!=NULL then gen(=,V.place,-,p);
 12.<复合语句>->begin<语句>{;<语句>}end
-	T->eM2f
-	2->;M2
-	2->NULL
+	T->eM2f		//T.start=M.start;T.end=2.end
+	2->;M2		//2.start=M.start;2.end=2.end
+	2->NULL		//2.end,2.start=nxq;
 13.<条件> -> <表达式><关系运算符><表达式>|odd<表达式>
-	W->VsV
-	W->gV
+	W->VsV		//W.truelist=mklist(nxq);
+				//W.falselist=mklist(nxq+1);
+				//gen(s.place,V.place,V.place,0);
+				//gen(j,-,-,0);
+
+	W->gV		//W.truelist=mklist(nxq);
+				//W.falselist=mklist(nxq+1);
+				//gen(g.place,V.place,1,0);
+				//gen(j,-,-,0);
 14.<表达式>->[<加减运算符>]<项>{<加减运算符><项>}
-	V->3YU
-	3->q
-	3->NULL
-	U->qYU
-	U->NULL
+	V->3YU		//V1.place=newtemp;gen(3.place,Y.place,-,V1.place);
+				//V.place=newtemp;gen(+,V1.place,U.place,V.place);
+	3->q		//3.place=q.place;
+	3->NULL		//3.place='+';
+	U->qYU		//U1.place=newtemp;gen(q.place,Y.place,-,U1.place);
+				//U.place=newtemp;gen(+,U1.place,U右.place,U左.palce)
+	U->NULL		//U.place=0
 15.<项>-><因子>{<乘除运算符><因子>}
-	Y->ZX
-	X->rZX
-	X->NULL
+	Y->ZX		//Y.place=newtemp;gen(X.sym,Z,place,X.place,Y.place);
+	X->rZX		//X.sym=r.sym;X.place=newtemp;gen(X右.sym,X右.place,Z.place,X.place);
+	X->NULL		//X.sym=+,X.place=0;
 16.<因子>-><标识符>|<无符号整数>|(<表达式>)
-	Z->p
-	Z->o
-	Z->(V)
+	Z->p		//Z.place=p.place
+	Z->o		//Z.place=o.place
+	Z->(V)		//Z.place=V.place
 //17.<加减运算符>->+|-
 //	//Z->+|-
 //18.<乘除运算符>->*|/
@@ -158,15 +172,28 @@ value 综合属性，表示值
 //19.<关系运算符>->=|#|<|<=|>|>=
 //	//X->=|#|<|<=|>|>=
 20.<条件语句>-> if<条件>then<语句>
-	O->hWiM
+	O->hWiM		//backpatch(W.truelist,M.start);
+				//backpathc(W.falselist,M.end);
+				//O.start=M.start
+				//O.end=M.end
 21.<过程调用语句>->call<标识符>
-	Q->jp
+	Q->jp		//Q.start=nxq;
+				//Q.place=newtemp(j.place,p.place,-,-);
+				//Q.end=nxq;
 22.<当型循环语句>->while<条件>do<语句>
-	P->kWlM
+	P->kWlM		//backpatch(W.truelist,M.start)
+				//backpatch(W.falselist.M.end)
+				//gen(j,-,-,M.start)
+				//P.start=M.start
+				//P.end=nxq;
 23.<读语句>->read(<标识符>{,<标识符>})
-	R->m(p1)
+	R->m(p1)	//R.start=nxq
+				//gen(m.place,p.place,1.place,-);
+				//R.end=nxq;
 24.<写语句>->write(<标识符>{,<标识符>})
-	S->n(p1)
+	S->n(p1)	//S.start=nxq
+				//gen(n.place,p.place,1.place,-);
+				//R.end=nxq;
 //25.<字母>->a|...|z
 //	//K->a|...|z
 //26.<数字>->0|...|9
@@ -186,8 +213,8 @@ x.push_back(new rule("C", "aG0;"));
 x.push_back(new rule("0", ",G0"));
 x.push_back(new rule("0", "@"));
 x.push_back(new rule("G", "p=o"));
-x.push_back(new rule("D", "bH1;"));
-x.push_back(new rule("1", ",H1"));
+x.push_back(new rule("D", "bp1;"));
+x.push_back(new rule("1", ",p1"));
 x.push_back(new rule("1", "@"));
 x.push_back(new rule("E", "LB;J"));
 x.push_back(new rule("J", "EJ"));

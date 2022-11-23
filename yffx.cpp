@@ -30,8 +30,8 @@ int main() {
     x.push_back(new rule("0", ",G0"));
     x.push_back(new rule("0", "@"));
     x.push_back(new rule("G", "p=o"));
-    x.push_back(new rule("D", "bH1;"));
-    x.push_back(new rule("1", ",H1"));
+    x.push_back(new rule("D", "bp1;"));
+    x.push_back(new rule("1", ",p1"));
     x.push_back(new rule("1", "@"));
     x.push_back(new rule("E", "LB;J"));
     x.push_back(new rule("J", "EJ"));
@@ -78,8 +78,8 @@ int main() {
     y.push_back(new rule("0", ",G0"));
     y.push_back(new rule("0", "@"));
     y.push_back(new rule("G", "p=o"));
-    y.push_back(new rule("D", "bH1;"));
-    y.push_back(new rule("1", ",H1"));
+    y.push_back(new rule("D", "bp1;"));
+    y.push_back(new rule("1", ",p1"));
     y.push_back(new rule("1", "@"));
     y.push_back(new rule("E", "LB;J"));
     y.push_back(new rule("J", "EJ"));
