@@ -15,7 +15,9 @@
 ## 中间代码生成？还要加静态语义检查
 
 每个规则增加属性
-
+## 语法有问题
+const a=10与=又是关系运算符
+所以改关系运算符=为=，与c风格相同
 
 ##
 A:<程序>
@@ -219,7 +221,7 @@ x.push_back(new rule("1", "@"));
 x.push_back(new rule("E", "LB;J"));
 x.push_back(new rule("J", "EJ"));
 x.push_back(new rule("J", "@"));
-x.push_back(new rule("L", "cp"));
+x.push_back(new rule("L", "cp;"));
 x.push_back(new rule("M", "N"));
 x.push_back(new rule("M", "O"));
 x.push_back(new rule("M", "P"));

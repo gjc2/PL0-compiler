@@ -35,7 +35,7 @@ int main() {
     x.push_back(new rule("E", "LB;J"));
     x.push_back(new rule("J", "EJ"));
     x.push_back(new rule("J", "@"));
-    x.push_back(new rule("L", "cp"));
+    x.push_back(new rule("L", "cp;"));
     x.push_back(new rule("M", "N"));
     x.push_back(new rule("M", "O"));
     x.push_back(new rule("M", "P"));
@@ -86,7 +86,7 @@ int main() {
     y.push_back(new rule("E", "LB;J"));
     y.push_back(new rule("J", "EJ"));
     y.push_back(new rule("J", "@"));
-    y.push_back(new rule("L", "cp"));
+    y.push_back(new rule("L", "cp;"));
     y.push_back(new rule("M", "N"));
     y.push_back(new rule("M", "O"));
     y.push_back(new rule("M", "P"));
@@ -134,7 +134,26 @@ int main() {
     vector<string>T = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","#",",",";","(",")","!","="};
     table* test = new table(dfa, T, N, y);
     test->show();
-    vector<string>xxx = { "a","p","=","o",";","b","p",",","p",";","c","p",";","e","p","d","p","q","p","f",";","e","m","(","p",")",";","k","p","s","o","l","e","j","p",";","n","(","o","r","p",")",";","m","(","p",")",";","f","f","!" };
+    vector<string>xxx = 
+    { "b","p",",","p",",","p",",","p",",","p",
+        ",","p",",","p",";","c","p",";","b","p",
+        ",","p",";","e","p","d","p",";","p","d","p",
+        ";","p","d","p","r","p","f",";","c","p",";","b",
+        "p",";","e","p","d","p",";","p","d","o",";","p","d","p",
+        ";","k","p","s","p","l","p","d","o","r","p",";","k","p","s","p",
+        "l","e","p","d","o","r","p",";","p","d","p","r","o",";","h","p","s",
+        "p","i","e","p","d","p","q","p",";","p","d","p","q","o","f","f","f",";",
+        "c","p",";","b","p",";","e","p","d","p",";","p","d","p",";","k","p","s","p",
+        "l","e","h","p","s","p","i","p","d","p","q","p",";","h","p","s","p","i","p","d",
+        "p","q","p","f",";","p","d","p","f",";","c","p",";","e","h","p","s","o","i","e","p",
+        "d","p","r","p",";","p","d","p","q","o",";","j","p","f","f",";","e","m","(","p",")",";",
+        "m","(","p",")",";","j","p",";","n","(","p",")",";","m","(","p",")",";","m","(","p",")",
+        ";","j","p",";","n","(","p",")",";","n","(","p",")",";","m","(","p",")",";","m","(","p",
+        ")",";","j","p",";","n","(","p",")",";","m","(","p",")",";","p","d","o",";","j","p",";",
+        "n","(","p",")","f",
+        
+        "!","#"
+    };
     reverse(xxx.begin(), xxx.end());
     gen* g = new gen();
     g->in =xxx;
