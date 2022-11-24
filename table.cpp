@@ -41,11 +41,12 @@ table::table(vector<item*>a,vector<string>T,vector<string>N,vector<rule*>origin)
 			if (it == a[i]->I[j]->r_r[0].end()) {//形如A->BC.
 				string templ = a[i]->I[j]->r_l[0];
 				string tempr = a[i]->I[j]->r_r[0];
-				if (a[i]->I[j]->r_r[0] == ".") {
-					tempr = ".";
+				if (tempr==".") {
+					tempr = "@";
 				}
 				else 
 					tempr.pop_back();//变成A->B
+				
 				rule* temp = new rule(templ, tempr);
 				for (int k = 0; k < origin.size(); k++) {
 					if (*origin[k] == *temp) {

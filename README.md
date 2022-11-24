@@ -239,6 +239,10 @@ x.push_back(new rule("3", "q"));
 x.push_back(new rule("3", "@"));
 x.push_back(new rule("U", "qYU"));
 x.push_back(new rule("U", "@"));
+
+x.push_back(new rule("Y", "ZX"));
+x.push_back(new rule("X", "rZX"));
+x.push_back(new rule("X", "@"));
 x.push_back(new rule("Z", "p"));
 x.push_back(new rule("Z", "o"));
 x.push_back(new rule("Z", "(V)"));

@@ -44,7 +44,7 @@ void gen::g(table t, vector<rule*>origin) {
 			sym.push_back(o);
 		}
 		else if (temp[0] == 'R') {
-			stack<string>u;
+			
 			int s;
 			if (temp.length() == 3) {
 				s = (temp[1] - '0') * 10 + temp[2] - '0';
@@ -53,12 +53,13 @@ void gen::g(table t, vector<rule*>origin) {
 				s = temp[1] - '0';
 			}
 			rule* r = origin[s];
-			for (int k = 0; k < r->r_r[0].length(); k++) {
-				u.push(sym[len3]);
-				len3--;
-				len1--;
-				sym.pop_back();
-				state.pop_back();
+			if (r->r_r[0] != "@") {
+				for (int k = 0; k < r->r_r[0].length(); k++) {
+					len3--;
+					len1--;
+					sym.pop_back();
+					state.pop_back();
+				}
 			}
 			sym.push_back(r->r_l[0]);
 			len3++;
@@ -73,12 +74,7 @@ void gen::g(table t, vector<rule*>origin) {
 				ss = t.f[{state[len1], sym[len3]}][0][0] - '0';
 			}
 			state.push_back(ss);
-			std::cout << r->r_l[0] << "->";
-			for (int k = 0; k < u.size(); k++) {
-				std::cout << u.top();
-				u.pop();
-			}
-			std::cout << endl;
+			r->show();
 
 		}
 		else {

@@ -55,6 +55,9 @@ int main() {
     x.push_back(new rule("3", "@"));
     x.push_back(new rule("U", "qYU"));
     x.push_back(new rule("U", "@"));
+    x.push_back(new rule("Y", "ZX"));
+    x.push_back(new rule("X", "rZX"));
+    x.push_back(new rule("X", "@"));
     x.push_back(new rule("Z", "p"));
     x.push_back(new rule("Z", "o"));
     x.push_back(new rule("Z", "(V)"));
@@ -103,6 +106,9 @@ int main() {
     y.push_back(new rule("3", "@"));
     y.push_back(new rule("U", "qYU"));
     y.push_back(new rule("U", "@"));
+    y.push_back(new rule("Y", "ZX"));
+    y.push_back(new rule("X", "rZX"));
+    y.push_back(new rule("X", "@"));
     y.push_back(new rule("Z", "p"));
     y.push_back(new rule("Z", "o"));
     y.push_back(new rule("Z", "(V)"));
@@ -112,7 +118,7 @@ int main() {
     y.push_back(new rule("R", "m(p1)"));
     y.push_back(new rule("S", "n(p1)"));
 
-    for (int i = 0; i < 47; i++) {
+    for (int i = 0; i < 50; i++) {
         x[i]->back_rule();
         x[i]->show();
         y[i]->numm = i;
@@ -125,12 +131,10 @@ int main() {
     cout << "all:" << endl;
     for (int i = 0; i < dfa.size(); i++) dfa[i]->show_all();
     vector<string>N = { "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3"};
-    vector<string>T = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","#",",",";","(",")","!"};
+    vector<string>T = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","#",",",";","(",")","!","="};
     table* test = new table(dfa, T, N, y);
     test->show();
-    vector<string>xxx = { "a","p","=","o",";","b","p",",","p",";","c","p",";",
-        "e","p","d","p","s","p","f",";","e","m","(","p",")",";","k","p","q","q","o",
-        "l","e","j","p",";","n","(","o","r","p",")",";","m","(","p",")",";","f","f","!" };
+    vector<string>xxx = { "a","p","=","o",";","b","p",",","p",";","c","p",";","e","p","d","p","q","p","f",";","e","m","(","p",")",";","k","p","s","o","l","e","j","p",";","n","(","o","r","p",")",";","m","(","p",")",";","f","f","!" };
     reverse(xxx.begin(), xxx.end());
     gen* g = new gen();
     g->in =xxx;
@@ -158,11 +162,11 @@ item* DFA_construct(vector<rule*>m,/*int level,*/ vector<rule*> add,item* fa) {
             //加入
             for (int i = 0; i < m.size(); i++) {//遍历所有的规则
                 for (int k = 0; k < m[i]->len; k++) {
-                    if (m[i]->r_l[k] == str && m[i]->r_r[k] == ".") {
-                        swap(*it, *itt);
-                        a->push_rule(new rule(m[i]->r_l[k], tempr));
-                        //swap(*it, *itt);
-                    }
+                    //if (m[i]->r_l[k] == str && m[i]->r_r[k] == ".") {
+                    //    swap(*it, *itt);
+                    //    a->push_rule(new rule(m[i]->r_l[k], tempr));
+                    //    //swap(*it, *itt);
+                    //}
                     if (m[i]->r_l[k] == str&&m[i]->r_r[k][0]=='.') {
                         a->push_rule(new rule(m[i]->r_l[k], m[i]->r_r[k]));
                     }
