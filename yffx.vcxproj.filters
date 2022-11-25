@@ -33,6 +33,9 @@
     <ClCompile Include="mid.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="entry.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rule.h">
@@ -51,6 +54,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="mid.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="entry.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

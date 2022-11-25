@@ -52,3 +52,161 @@ mid::mid() {
 	func.push_back(f_48);
 	func.push_back(f_49);
 }
+void mid::insert(string name,string kind,int var,int level,int addr) {
+	m.push_back(new entry(name, kind, var, level, addr));
+}
+void mid::gen_quad(string q[4]) {
+	code.push_back(new quad(q));
+}
+void mid::f_0() {//&->A
+	;
+}
+void mid::f_1() {//A->B!
+	;
+}
+void mid::f_2() {
+	;
+}
+void mid::f_3() {
+
+}
+void mid::f_4() {
+	;
+}
+void mid::f_5() {
+	;
+}
+void mid::f_6() {
+	;
+}
+void mid::f_7() {
+	;
+}
+void mid::f_8() {
+	;
+}
+void mid::f_9() {//C->aG0
+	;
+}
+void mid::f_10() {
+	;
+}
+void mid::f_11() {
+	;
+}
+void mid::f_12() {//G->p=o
+	insert(p, "constant", o, l, dx);
+	dx++;
+}
+void mid::f_13() {//D->bp1;
+	insert(p, "variable", 0, l, dx);
+}
+void mid::f_14() {
+	insert(p, "variable", 0, l, dx);
+}
+
+void mid::f_15() {
+	;
+}
+void mid::f_16() {
+	;
+}
+void mid::f_17() {
+	;
+}
+void mid::f_18() {
+	;
+}
+void mid::f_19() {
+	;
+}
+void mid::f_20() {
+	;
+}
+void mid::f_21() {
+	;
+}
+void mid::f_22() {
+	;
+}
+void mid::f_23() {
+	;
+}
+void mid::f_24() {
+	;
+}
+void mid::f_25() {
+	;
+}
+void mid::f_26() {
+	;
+}
+void mid::f_27() {
+	;
+}
+void mid::f_28() {
+	;
+}
+void mid::f_29() {
+	;
+}
+void mid::f_30() {
+	;
+}
+void mid::f_31() {
+	;
+}
+void mid::f_32() {
+	;
+}
+void mid::f_33() {
+	;
+}
+void mid::f_34() {
+	;
+}
+void mid::f_35() {
+	;
+}
+void mid::f_36() {
+	;
+}
+void mid::f_37() {
+	;
+}
+void mid::f_38() {
+	;
+}
+void mid::f_39() {
+	;
+}
+void mid::f_40() {
+	;
+}
+void mid::f_41() {
+	;
+}
+void mid::f_42() {
+	;
+}
+void mid::f_43() {
+	;
+}
+void mid::f_44() {
+	;
+}
+void mid::f_45() {
+	;
+}
+void mid::f_46() {
+	;
+}
+void mid::f_47() {
+	;
+}
+void mid::f_48() {
+	;
+}
+void mid::f_49() {
+	;
+}
