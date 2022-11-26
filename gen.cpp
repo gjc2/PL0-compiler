@@ -29,7 +29,11 @@ void gen::g(table t, vector<rule*>origin) {
 			return;
 		}
 		string temp = t.f[{state[len1], in[len2]}][0];
-		if (temp == "ACC") { std::cout << "ok" << endl; return; }
+		if (temp == "ACC") { 
+			std::cout << "ok" << endl; 
+			midcode->show();
+			return; 
+		}
 		if (temp[0] == 'S') {
 			int s;
 			if (temp.length() == 3) {
@@ -40,8 +44,11 @@ void gen::g(table t, vector<rule*>origin) {
 			}
 			state.push_back(s);
 			string o = in[len2];
+			string o2 = in_p[len2];
 			in.pop_back();
+			in_p.pop_back();
 			sym.push_back(o);
+			midcode->sta.push_back({ o2 ," "," "," "});
 		}
 		else if (temp[0] == 'R') {
 			
@@ -75,7 +82,7 @@ void gen::g(table t, vector<rule*>origin) {
 			}
 			state.push_back(ss);
 			r->show();
-
+			(midcode->*mid::func[s])();
 		}
 		else {
 			int ss;
@@ -93,4 +100,5 @@ void gen::g(table t, vector<rule*>origin) {
 		}
 		show();
 	}
+	
 }

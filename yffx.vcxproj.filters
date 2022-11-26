@@ -59,6 +59,9 @@
     <ClInclude Include="entry.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="4s.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md">

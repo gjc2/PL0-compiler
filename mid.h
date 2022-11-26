@@ -1,13 +1,17 @@
 #include<vector>
 #include "quadruple.h"
-#include "entry.h"
+#include "entry.h" 
+#include "4s.h"
 class mid {
 public:
-	vector<void(mid::*)()>func;//50个
+	static vector<void(mid::*)()>func;//50个
 	vector<quad*>code;//四元组
 	vector<entry*>m;//符号表
+	vector<s4>sta;
+	int type = 0;
 	int l = 0;
 	int dx = 0;
+	int newtemp = 0;
 	void f_0();
 	void f_1();
 	void f_2();
@@ -64,7 +68,8 @@ public:
 	void f_49();
 	
 	void show();
-	void insert(string name,string kind,int var,int level,int addr);
+	void insert(string name,string kind,string var,int level,int addr);
 	void gen_quad(string q[4]);
 	mid();
+	int lookup(string name);
 };

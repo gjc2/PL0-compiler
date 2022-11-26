@@ -136,6 +136,7 @@
     <ClCompile Include="yffx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="4s.h" />
     <ClInclude Include="entry.h" />
     <ClInclude Include="gen.h" />
     <ClInclude Include="item.h" />
