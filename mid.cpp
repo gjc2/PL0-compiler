@@ -71,7 +71,7 @@ void mid::f_1() {//A->B!
 	sta.pop_back();
 	sta.push_back({ " "," "," "," "});
 }
-void mid::f_2() {//B->FIKM
+void mid::f_2() {//B->FIKH
 	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
 	sta.pop_back();
@@ -172,6 +172,7 @@ void mid::f_16() {//E->LB;J
 	sta.push_back({ " ",next," "," " });
 	l--;
 	nowproc = "main";
+	cout << beg<<" "<<next << endl;
 }
 void mid::f_17() {//J->EJ
 	string next = sta[sta.size() - 1].next;
@@ -189,6 +190,7 @@ void mid::f_19() {//L->cp;
 	string beg1 = to_string(code.size()+1);
 	sta.pop_back();
 	string name = sta[sta.size() - 1].name;
+	sta.pop_back();
 	sta.pop_back();
 	sta.push_back({ " ",beg," "," "});
 	l++;
@@ -544,6 +546,7 @@ void mid::backpatch(string t, string q) {
 	int nx;
 	if (n == 0) {
 		code[n]->q[3] = q;
+		cout << 1 << endl;
 	}
 	else {
 		while (code[n]->q[0][0] == 'j' && n != 0) {
