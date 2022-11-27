@@ -21,7 +21,7 @@ table::table(vector<item*>a,vector<string>T,vector<string>N,vector<rule*>origin)
 	//添加转移
 	for (int i = 0; i < a.size(); i++) {
 		for (auto j : a[i]->mp) {
-			if ((j.first.second >= "A"&& j.first.second <= "Z")|| (j.first.second >= "0" && j.first.second <= "3")) {//要改，改成判断是终结符还是非终结符
+			if ((j.first.second >= "A"&& j.first.second <= "Z")|| (j.first.second >= "0" && j.first.second <= "6")) {//要改，改成判断是终结符还是非终结符
 				//f[{a[i]->numm, j.first.second}].pop_back();
 				f[{a[i]->numm, j.first.second}].push_back(to_string(j.second->numm));
 			}

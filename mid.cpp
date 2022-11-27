@@ -52,6 +52,10 @@ mid::mid() {
 	func.push_back(&mid::f_47);
 	func.push_back(&mid::f_48);
 	func.push_back(&mid::f_49);
+	func.push_back(&mid::f_50);
+	func.push_back(&mid::f_51);
+	func.push_back(&mid::f_52);
+	func.push_back(&mid::f_53);
 }
 void mid::insert(string name,string kind,string var,int level,int addr) {
 	m.push_back(new entry(name, kind, var, level, addr));
@@ -166,43 +170,53 @@ void mid::f_17() {//J->EJ
 void mid::f_18() {//J->NULL
 	sta.push_back({ " "," "," "," " });
 }
-void mid::f_19() {//L->cp
+void mid::f_19() {//L->cp;
 	sta.pop_back();
 	sta.pop_back();
 	sta.push_back({ " "," "," "," " });
 	l++;
+	//string temp[4] = { "j","-","-","0" };
+	//gen_quad(temp);
 }
 //上面的 常量说明，变量说明，过程说明不用生成四元式
 void mid::f_20() {//M->N
+	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",next," "," " });
 }
 void mid::f_21() {//M->O
+	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",next," "," " });
 }
 void mid::f_22() {//M->P
+	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",next," "," " });
 }
 void mid::f_23() {//M->Q
+	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",next," "," " });
 }
 void mid::f_24() {//M->R
+	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",next," "," " });
 }
 void mid::f_25() {//M->S
+	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",next," "," " });
 }
 void mid::f_26() {//M->T
+	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",next," "," " });
 }
 void mid::f_27() {//M->NULL
-	sta.push_back({ " "," "," "," " });
+	string next = to_string(code.size());
+	sta.push_back({ " ",next," "," " });
 }
 //上面的各种语句赋值给语句也不用四元式
 
@@ -212,12 +226,13 @@ void mid::f_28() {//N->pdV
 	sta.pop_back();
 	sta.pop_back();
 	string p = sta[sta.size() - 1].name;
-	if (lookup(p) != -1) {
-		string temp[] = { "=",vv,"-",p };
+	if (lookup(p) != -1) {//
+		string temp[4] = { "=",vv,"-",p };
 		gen_quad(temp);
 	}
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	string next = to_string(code.size());
+	sta.push_back({ " ",next," "," " });
 }
 void mid::f_29() {//T->eM2f
 	sta.pop_back();
@@ -240,30 +255,34 @@ void mid::f_31() {//2->NULL
 }
 void mid::f_32() {//W->VsV
 	string t = to_string(code.size());
-	string f = to_string(code.size());
 	string id2 = sta[sta.size() - 1].name;
 	sta.pop_back();
 	string judge = sta[sta.size() - 1].name;
 	sta.pop_back();
 	string id1 = sta[sta.size() - 1].name;
 	sta.pop_back();
-	sta.push_back({" "," ",t,f});
-	string temp[4] = { judge, id1, id2, "0" };
+	
+	string temp[4] = { "j"+judge, id1, id2, "0"};
 	gen_quad(temp);
+	string f = to_string(code.size());
+	string temp1[4] = { "j","-","-","0" };
+	gen_quad(temp1);
+	sta.push_back({ " "," ",t,f });
 }
 void mid::f_33() {//W->gV
 	string t = to_string(code.size());
-	string f = to_string(code.size());
 	string id1 = sta[sta.size() - 1].name;
 	sta.pop_back();
 	string judge = sta[sta.size() - 1].name;
 	sta.pop_back();
 	string id2 = "1";
-	sta.push_back({ " "," ",t,f });
-	string temp[4] = { judge, id1, id2, "0" };
+	
+	string temp[4] = { "j" + judge, id1, id2, "0"};
 	gen_quad(temp);
+	string f = to_string(code.size());
 	string temp1[4] = { "j","-","-","0" };
 	gen_quad(temp1);
+	sta.push_back({ " "," ",t,f });
 }
 void mid::f_34() {//V->3YU
 	string u = sta[sta.size() - 1].name;
@@ -344,7 +363,7 @@ void mid::f_39() {//Y->ZX
 }
 void mid::f_40() {//X->rZX
 	string xr = sta[sta.size() - 1].name;
-	string xs = sta[sta.size() - 1].name;
+	string xs = sta[sta.size() - 1].next;
 	sta.pop_back();
 	string z = sta[sta.size() - 1].name;
 	sta.pop_back();
@@ -381,11 +400,20 @@ void mid::f_44() {//Z->(V)
 	sta.push_back({v," "," "," "});
 }
 void mid::f_45() {//O->hWiM //if then 语句待加
+	string next = sta[sta.size() - 1].next;
+	string q = sta[sta.size() - 1].name;
 	sta.pop_back();
 	sta.pop_back();
+	string f = sta[sta.size() - 1].f;
+	string t = sta[sta.size() - 1].t;
+	backpatch(t, q);
+	string snext = merge(f, next);
+	code[stoi(f)]->q[3] = next;
+	//backpatch
 	sta.pop_back();
 	sta.pop_back();
-	sta.push_back({" "," "," "," "});
+	sta.push_back({" ",snext," "," "});
+
 }
 void mid::f_46() {//Q->jp //应该加跳转
 	string p = sta[sta.size() - 1].name;
@@ -398,14 +426,27 @@ void mid::f_46() {//Q->jp //应该加跳转
 	newtemp++;
 	string temp[4] = { j,p,"-","-" };
 	gen_quad(temp);
-	sta.push_back({" "," "," "," "});
+	string next = to_string(code.size());
+	sta.push_back({" ",next," "," "});
 }
 void mid::f_47() {//P->kWlM	 //while 语句待加
+	string next = sta[sta.size() - 1].next;
+	string nextquad1 = sta[sta.size() - 1].name;
 	sta.pop_back();
 	sta.pop_back();
+	string t = sta[sta.size() - 1].t;
+	string f = sta[sta.size() - 1].f;
+	string nextquad2 = sta[sta.size() - 1].name;
 	sta.pop_back();
 	sta.pop_back();
-	sta.push_back({" "," "," "," "});
+	
+	backpatch(next, nextquad2);
+	backpatch(t, nextquad1);
+	code[stoi(f)]->q[3] = next;
+	string snext = f;
+	string temp[4] = { "j","-","-",nextquad2 };
+	gen_quad(temp);
+	sta.push_back({" ",snext," "," "});
 }
 void mid::f_48() {//R->m(p1)
 	sta.pop_back();
@@ -415,7 +456,8 @@ void mid::f_48() {//R->m(p1)
 	sta.pop_back();
 	string temp[4] = { "read","-","-","-"};
 	gen_quad(temp);
-	sta.push_back({" "," "," "," "});
+	string next = to_string(code.size());
+	sta.push_back({" ",next," "," "});
 }
 void mid::f_49() {//S->n(p1)
 	sta.pop_back();
@@ -425,20 +467,70 @@ void mid::f_49() {//S->n(p1)
 	sta.pop_back();
 	string temp[4] = { "write","-","-","-" };
 	gen_quad(temp);
-	sta.push_back({ " "," "," "," " });
+	string next = to_string(code.size());
+	sta.push_back({ " ",next," "," " });
 }
+void mid::f_50() {//H->4M
+	string next = sta[sta.size() - 1].next;
+	sta.pop_back();
+	string nextquad = sta[sta.size() - 1].name;
+	sta.pop_back();
+	sta.push_back({ nextquad,next," "," " });
+}
+void mid::f_51() {//4->NULL
+	string nextquad = to_string(code.size());
+	sta.push_back({nextquad ," "," "," " });
+}
+
+void mid::f_52() {//5->6W
+	string t = sta[sta.size() - 1].t;
+	string f = sta[sta.size() - 1].f;
+	sta.pop_back();
+	string nextquad = sta[sta.size() - 1].name;
+	sta.pop_back();
+	sta.push_back({ nextquad, " ", t, f });
+}
+void mid::f_53() {//6->NULL
+	string nextquad = to_string(code.size());
+	sta.push_back({ nextquad, " ", " ",  " "});
+}
+
 void mid::show() {
 	for (int i = 0; i < m.size(); i++)
 		m[i]->show();
-	for (int i = 0; i < code.size(); i++)
+	for (int i = 0; i < code.size(); i++) {
+		cout << i << " ";
 		code[i]->show();
+	}
 }
 
 int mid::lookup(string name) {
 	for (int i = 0; i < m.size(); i++) {
-		if (m[i]->name == name && m[i]->level == l) {
+		if (m[i]->name == name/* && m[i]->level == l*/) {
 			return i;
 		}
 	}
 	return -1;
+}
+
+void mid::backpatch(string t, string q) {
+	int n = stoi(t);
+	if (n >= code.size())return;
+	int nx;
+	while (code[n]->q[0][0] == 'j') {
+		nx = stoi(code[n]->q[3]);
+		code[n]->q[3] = q;
+		n = nx;
+	}
+
+}
+
+string mid::merge(string p1, string p2) {
+	if (stoi(p2) >= code.size()) return p1;
+	int p = stoi(code[stoi(p2)]->q[3]);
+	while (code[p]->q[0][0] == 'j') {
+		p = stoi(code[p]->q[3]);
+	}
+	code[p]->q[3] = p1;
+	return p2;
 }

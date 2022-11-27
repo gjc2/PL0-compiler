@@ -66,10 +66,16 @@ public:
 	void f_47();
 	void f_48();
 	void f_49();
+	void f_50();
+	void f_51();
+	void f_52();
+	void f_53();
 	
 	void show();
 	void insert(string name,string kind,string var,int level,int addr);
 	void gen_quad(string q[4]);
 	mid();
 	int lookup(string name);
+	void backpatch(string t, string q);
+	string merge(string p1, string p2);
 };

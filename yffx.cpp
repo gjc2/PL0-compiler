@@ -18,7 +18,7 @@ int main() {
     vector<rule*>y;
     x.push_back(new rule("&", "A"));//我们把。看成.为了和后继规则中的.区分
     x.push_back(new rule("A", "B!"));
-    x.push_back(new rule("B", "FIKM"));
+    x.push_back(new rule("B", "FIKH"));
     x.push_back(new rule("F", "C"));
     x.push_back(new rule("F", "@"));
     x.push_back(new rule("I", "D"));
@@ -45,8 +45,8 @@ int main() {
     x.push_back(new rule("M", "T"));
     x.push_back(new rule("M", "@"));
     x.push_back(new rule("N", "pdV"));
-    x.push_back(new rule("T", "eM2f"));
-    x.push_back(new rule("2", ";M2"));
+    x.push_back(new rule("T", "eH2f"));
+    x.push_back(new rule("2", ";H2"));
     x.push_back(new rule("2", "@"));
     x.push_back(new rule("W", "VsV"));
     x.push_back(new rule("W", "gV"));
@@ -61,15 +61,20 @@ int main() {
     x.push_back(new rule("Z", "p"));
     x.push_back(new rule("Z", "o"));
     x.push_back(new rule("Z", "(V)"));
-    x.push_back(new rule("O", "hWiM"));
+    x.push_back(new rule("O", "h5iH"));
     x.push_back(new rule("Q", "jp"));
-    x.push_back(new rule("P", "kWlM"));
+    x.push_back(new rule("P", "k5lH"));
     x.push_back(new rule("R", "m(p1)"));
     x.push_back(new rule("S", "n(p1)"));
+    x.push_back(new rule("H", "4M"));
+    x.push_back(new rule("4", "@"));
+    x.push_back(new rule("5", "6W"));
+    x.push_back(new rule("6", "@"));
+
 
     y.push_back(new rule("&", "A"));
     y.push_back(new rule("A", "B!"));
-    y.push_back(new rule("B", "FIKM"));
+    y.push_back(new rule("B", "FIKH"));
     y.push_back(new rule("F", "C"));
     y.push_back(new rule("F", "@"));
     y.push_back(new rule("I", "D"));
@@ -96,8 +101,8 @@ int main() {
     y.push_back(new rule("M", "T"));
     y.push_back(new rule("M", "@"));
     y.push_back(new rule("N", "pdV"));
-    y.push_back(new rule("T", "eM2f"));
-    y.push_back(new rule("2", ";M2"));
+    y.push_back(new rule("T", "eH2f"));
+    y.push_back(new rule("2", ";H2"));
     y.push_back(new rule("2", "@"));
     y.push_back(new rule("W", "VsV"));
     y.push_back(new rule("W", "gV"));
@@ -112,13 +117,17 @@ int main() {
     y.push_back(new rule("Z", "p"));
     y.push_back(new rule("Z", "o"));
     y.push_back(new rule("Z", "(V)"));
-    y.push_back(new rule("O", "hWiM"));
+    y.push_back(new rule("O", "h5iH"));
     y.push_back(new rule("Q", "jp"));
-    y.push_back(new rule("P", "kWlM"));
+    y.push_back(new rule("P", "k5lH"));
     y.push_back(new rule("R", "m(p1)"));
     y.push_back(new rule("S", "n(p1)"));
+    y.push_back(new rule("H", "4M"));
+    y.push_back(new rule("4", "@"));
+    y.push_back(new rule("5", "6W"));
+    y.push_back(new rule("6", "@"));
 
-    for (int i = 0; i < 50; i++) {
+    for (int i = 0; i < 54; i++) {
         x[i]->back_rule();
         x[i]->show();
         y[i]->numm = i;
@@ -130,7 +139,7 @@ int main() {
     DFA_construct(x,p,0);
     cout << "all:" << endl;
     for (int i = 0; i < dfa.size(); i++) dfa[i]->show_all();
-    vector<string>N = { "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3"};
+    vector<string>N = { "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6"};
     vector<string>T = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","#",",",";","(",")","!","="};
     table* test = new table(dfa, T, N, y);
     test->show();
@@ -294,5 +303,8 @@ void set_type() {
     type["1"] = 0;
     type["2"] = 0;
     type["3"] = 0;
+    type["4"] = 0;
+    type["6"] = 0;
+    type["5"] = 0;
 }
 

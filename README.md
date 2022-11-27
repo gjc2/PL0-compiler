@@ -86,7 +86,7 @@ sym  综合属性， 表示运算符号，如*/+-
 1.<程序> -> <分程序>。//A.code=B.code
 	A->B。
 2.<分程序> -> [<常量说明部分>][<变量说明部分>][<过程说明部分>]<语句>
-	B->FIKM		//B.code=F.code+I.code+K.code+M.code 几个代码段拼起来
+	B->FIKH		//B.code=F.code+I.code+K.code+M.code 几个代码段拼起来
 	F->C		//F.code=C.code
 	F->NULL		//F.code=NULL
 	I->D		//I.code=D.code
@@ -121,9 +121,13 @@ sym  综合属性， 表示运算符号，如*/+-
 	E->LB;J
 	J->EJ
 	J->NULL
-9.<过程首部>->procedure<标识符>
-	L->cp		//l=l+1
+9.<过程首部>->procedure<标识符>;
+	L->cp;		//l=l+1
+				//gen(j,-,-,0)
 ### 语句
+
+	H->4M
+	4->NULL
 10.<语句> -> <赋值语句>|<条件语句>|<当型循环语句>
 	|<过程调用语句>|<读语句>|<写语句>|<复合语句>|<空>
 	M->N		//M.start=,M.end=
@@ -142,6 +146,9 @@ sym  综合属性， 表示运算符号，如*/+-
 	2->;M2		//2.start=M.start;2.end=2.end
 	2->NULL		//2.end,2.start=nxq;
 13.<条件> -> <表达式><关系运算符><表达式>|odd<表达式>
+
+	5->6W
+	6->NULL
 	W->VsV		//W.truelist=mklist(nxq);
 				//W.falselist=mklist(nxq+1);
 				//gen(s.place,V.place,V.place,0);
