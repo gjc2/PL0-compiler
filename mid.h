@@ -12,6 +12,7 @@ public:
 	int l = 0;
 	int dx = 0;
 	int newtemp = 0;
+	string nowproc;
 	void f_0();
 	void f_1();
 	void f_2();

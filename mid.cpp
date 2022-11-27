@@ -72,11 +72,19 @@ void mid::f_1() {//A->B!
 	sta.push_back({ " "," "," "," "});
 }
 void mid::f_2() {//B->FIKM
+	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
 	sta.pop_back();
 	sta.pop_back();
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",next," "," " });
+	if (nowproc != "main") {
+		string temp[4] = { "j","-","-","0" };
+		gen_quad(temp);
+		int nn = lookup(nowproc);
+		int tt = code.size() - 1;
+		m[nn]->level = tt;
+	}
 }
 void mid::f_3() {//F->C
 	type++;
@@ -154,31 +162,42 @@ void mid::f_15() {//1->NULL
 	sta.push_back({ " "," "," "," " });
 }
 void mid::f_16() {//E->LB;J
+	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
 	sta.pop_back();
 	sta.pop_back();
+	string beg = sta[sta.size() - 1].next;
+	backpatch(beg, next);
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",next," "," " });
 	l--;
+	nowproc = "main";
 }
 void mid::f_17() {//J->EJ
+	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",next," "," " });
 	
 }
 void mid::f_18() {//J->NULL
-	sta.push_back({ " "," "," "," " });
+	string next = to_string(code.size());
+	sta.push_back({ " ",next," "," " });
 }
 void mid::f_19() {//L->cp;
+	string beg = to_string(code.size());
+	string beg1 = to_string(code.size()+1);
 	sta.pop_back();
+	string name = sta[sta.size() - 1].name;
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ " ",beg," "," "});
 	l++;
-	//string temp[4] = { "j","-","-","0" };
-	//gen_quad(temp);
+	string temp[4] = { "j","-","-","0" };
+	gen_quad(temp);
+	insert(name, "procedure",beg1,/*end*/0,/*ret*/0);
+	nowproc = name;
 }
-//上面的 常量说明，变量说明，过程说明不用生成四元式
+
 void mid::f_20() {//M->N
 	string next = sta[sta.size() - 1].next;
 	sta.pop_back();
@@ -418,14 +437,20 @@ void mid::f_45() {//O->hWiM //if then 语句待加
 void mid::f_46() {//Q->jp //应该加跳转
 	string p = sta[sta.size() - 1].name;
 	sta.pop_back();
+	if (lookup(p)!=-1) {
+		string tempp[4] = { "j","-","-",m[lookup(p)]->var};
+		gen_quad(tempp);
+		m[lookup(p)]->addr = code.size();
+		code[m[lookup(p)]->level]->q[3] =to_string( m[lookup(p)]->addr);
+	}
 	string j = sta[sta.size() - 1].name;
 	sta.pop_back();
-	string tempvar = "n" + to_string(newtemp);
+	/*string tempvar = "n" + to_string(newtemp);
 	insert(tempvar, "tempvar", "0", l, dx);
 	dx++;
 	newtemp++;
 	string temp[4] = { j,p,"-","-" };
-	gen_quad(temp);
+	gen_quad(temp);*/
 	string next = to_string(code.size());
 	sta.push_back({" ",next," "," "});
 }
@@ -517,18 +542,22 @@ void mid::backpatch(string t, string q) {
 	int n = stoi(t);
 	if (n >= code.size())return;
 	int nx;
-	while (code[n]->q[0][0] == 'j') {
-		nx = stoi(code[n]->q[3]);
+	if (n == 0) {
 		code[n]->q[3] = q;
-		n = nx;
 	}
-
+	else {
+		while (code[n]->q[0][0] == 'j' && n != 0) {
+			nx = stoi(code[n]->q[3]);
+			code[n]->q[3] = q;
+			n = nx;
+		}
+	}
 }
 
 string mid::merge(string p1, string p2) {
 	if (stoi(p2) >= code.size()) return p1;
 	int p = stoi(code[stoi(p2)]->q[3]);
-	while (code[p]->q[0][0] == 'j') {
+	while (code[p]->q[0][0] == 'j' && code[p]->q[3] != "0") {
 		p = stoi(code[p]->q[3]);
 	}
 	code[p]->q[3] = p1;

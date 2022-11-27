@@ -87,6 +87,7 @@ sym  综合属性， 表示运算符号，如*/+-
 	A->B。
 2.<分程序> -> [<常量说明部分>][<变量说明部分>][<过程说明部分>]<语句>
 	B->FIKH		//B.code=F.code+I.code+K.code+M.code 几个代码段拼起来
+				//gen(j,-,-,0);
 	F->C		//F.code=C.code
 	F->NULL		//F.code=NULL
 	I->D		//I.code=D.code
