@@ -133,6 +133,7 @@
     <ClCompile Include="mid.cpp" />
     <ClCompile Include="rule.cpp" />
     <ClCompile Include="table.cpp" />
+    <ClCompile Include="tools.cpp" />
     <ClCompile Include="yffx.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,10 +145,14 @@
     <ClInclude Include="quadruple.h" />
     <ClInclude Include="rule.h" />
     <ClInclude Include="table.h" />
+    <ClInclude Include="tools.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
     <None Include="table.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="output.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
