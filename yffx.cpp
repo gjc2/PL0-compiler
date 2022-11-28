@@ -17,7 +17,7 @@ int main() {
     std::reverse(sym.begin(), sym.end());
     std::reverse(name.begin(), name.end());
     //归约与中间代码生成
-    generate(sym, name, the_rule, lr);
+    generate(sym, name, the_rule, lr,"sym.txt","mid_code.txt");
 
 }
 

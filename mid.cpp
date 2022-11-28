@@ -1,4 +1,5 @@
 #include "mid.h"
+#include <fstream>
 using namespace std;
 std::vector<void(mid::*)()>mid::func;
 mid::mid() {
@@ -523,10 +524,15 @@ void mid::f_53() {//6->NULL
 }
 
 void mid::show() {
-	for (int i = 0; i < m.size(); i++)
+	for (int i = 0; i < m.size(); i++) {
+		m[i]->lr_table = lr_table;
 		m[i]->show();
+	}
 	for (int i = 0; i < code.size(); i++) {
-		cout << i << " ";
+		code[i]->mid_code = mid_code;
+		ofstream file(mid_code, ios::app);
+		file << i << " ";
+		file.close();
 		code[i]->show();
 	}
 }

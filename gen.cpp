@@ -1,8 +1,10 @@
 #include "gen.h"
 #include <stack>
 #include <iostream>
+#include <fstream>
 using namespace std;
 void gen::show() {
+	
 	for (int i = 0; i < state.size(); i++) {
 		std::cout << state[i] << " ";
 	}
@@ -17,6 +19,12 @@ void gen::show() {
 	std::cout << endl;
 }
 void gen::g(table t, vector<rule*>origin) {
+	ofstream a11(lr_table, ios::out);
+	ofstream a22(mid_code, ios::out);
+	a11.close();
+	a22.close();
+	midcode->lr_table = lr_table;
+	midcode->mid_code = mid_code;
 	state.push_back(0);
 	sym.push_back("#");
 	while (!in.empty()) {

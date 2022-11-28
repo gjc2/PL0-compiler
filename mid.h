@@ -13,6 +13,8 @@ public:
 	int dx = 0;
 	int newtemp = 0;
 	string nowproc;
+	string lr_table;
+	string mid_code;
 	void f_0();
 	void f_1();
 	void f_2();
