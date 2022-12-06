@@ -303,11 +303,17 @@ void set_type() {
     type["5"] = 0;
 }
 
-void generate(vector<string>sym, vector<string>name, vector<rule*>the_rule, table* lr,string lr_table,string mid_code) {
+mid* generate(vector<string>sym, vector<string>name, vector<rule*>the_rule, table* lr,string lr_table,string mid_code) {
     gen* g = new gen();
     g->in = sym;
     g->in_p = name;
     g->lr_table = lr_table;
     g->mid_code = mid_code;
     g->g(*lr, the_rule);
+    return g->midcode;
+}
+
+
+void genobjectcode(mid* mymid) {
+    ;
 }

@@ -131,6 +131,7 @@
     <ClCompile Include="gen.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="mid.cpp" />
+    <ClCompile Include="object.cpp" />
     <ClCompile Include="rule.cpp" />
     <ClCompile Include="table.cpp" />
     <ClCompile Include="tools.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="gen.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="mid.h" />
+    <ClInclude Include="object.h" />
     <ClInclude Include="quadruple.h" />
     <ClInclude Include="rule.h" />
     <ClInclude Include="table.h" />
