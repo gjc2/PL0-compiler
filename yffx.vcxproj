@@ -144,6 +144,7 @@
     <ClInclude Include="item.h" />
     <ClInclude Include="mid.h" />
     <ClInclude Include="object.h" />
+    <ClInclude Include="pcode.h" />
     <ClInclude Include="quadruple.h" />
     <ClInclude Include="rule.h" />
     <ClInclude Include="table.h" />
