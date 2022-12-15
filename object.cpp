@@ -40,9 +40,10 @@ objectcode::objectcode(mid* t) {
 			if (lookup(t, now) != -1) {
 				gen("JMP", "0", "0");
 				begin = all_num;//子程序的起点
-				end = table[nol]->level;//子程序的终点
+				cout << end << endl;
 				backto.push_back({ begin-1,stoi(nowmid->q[3]) });
 				nol = lookup(t, now);
+				end = table[nol]->level;//子程序的终点
 				gen("INT", "0", to_string(count_data(t, nol+1) + 3));
 				//backto.push_back({ all_num,stoi(nowmid->q[3]) });
 				now++;
@@ -406,6 +407,7 @@ objectcode::objectcode(mid* t) {
 		}
 		if (i == end) {
 			//object_code[begin-1]->a = to_string(data_num);
+			gen("OPR", "0", "0");
 			code_num = 0;
 			data_num = 0;
 			begin = -1;
