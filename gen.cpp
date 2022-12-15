@@ -40,6 +40,7 @@ void gen::g(table t, vector<rule*>origin) {
 		if (temp == "ACC") { 
 			std::cout << "ok" << endl; 
 			midcode->show();
+			cout << midcode->type << endl;
 			return; 
 		}
 		if (temp[0] == 'S') {

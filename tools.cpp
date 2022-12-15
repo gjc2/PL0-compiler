@@ -315,5 +315,6 @@ mid* generate(vector<string>sym, vector<string>name, vector<rule*>the_rule, tabl
 
 
 void genobjectcode(mid* mymid) {
-    ;
+    objectcode* ans=new objectcode(mymid);
+    ans->show();
 }

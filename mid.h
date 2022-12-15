@@ -8,11 +8,11 @@ public:
 	vector<quad*>code;//四元组
 	vector<entry*>m;//符号表
 	vector<s4>sta;
-	int type = 0;
+	int type = 0;//1表示变量定义阶段，2表示语句部分
 	int l = 0;
 	int dx = 0;
 	int newtemp = 0;
-	string nowproc;
+	string nowproc="proc";
 	string lr_table;
 	string mid_code;
 	void f_0();

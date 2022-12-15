@@ -88,27 +88,30 @@ void mid::f_2() {//B->FIKH
 	}
 }
 void mid::f_3() {//F->C
-	type++;
+	type = 1;
 	sta.pop_back();
 	sta.push_back({ " "," "," "," " });
 }
 void mid::f_4() {//F->NULL
+	type = 1;
 	sta.push_back({ " "," "," "," " });
 }
 void mid::f_5() {//I->D
-	type++;
+	type = 2;
 	sta.pop_back();
 	sta.push_back({ " "," "," "," " });
 }
 void mid::f_6() {//I->NULL
+	type = 2;
 	sta.push_back({ " "," "," "," " });
 }
 void mid::f_7() {//K->E
-	type++;
+	
 	sta.pop_back();
 	sta.push_back({ " "," "," "," " });
 }
 void mid::f_8() {//K->NULL
+	
 	sta.push_back({ " "," "," "," " });
 }
 void mid::f_9() {//C->aG0;
@@ -149,18 +152,23 @@ void mid::f_13() {//D->bp1;
 	dx++;
 }
 void mid::f_14() {//1->,p1
+	int thenum = stoi(sta[sta.size() - 1].name);
 	sta.pop_back();
 	string p = sta[sta.size() - 1].name;
 	sta.pop_back();
 	sta.pop_back();
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ to_string(thenum+1)," "," "," "});
 	if(type==1)
 		insert(p, "variable", "0", l, dx);
+	else if (type == 2) {
+		string temp[4] = { "push","-","-",p };
+		gen_quad(temp);
+	}
 	dx++;
 }
 
 void mid::f_15() {//1->NULL
-	sta.push_back({ " "," "," "," " });
+	sta.push_back({ "0"," "," "," " });
 }
 void mid::f_16() {//E->LB;J
 	string next = sta[sta.size() - 1].next;
@@ -195,7 +203,7 @@ void mid::f_19() {//L->cp;
 	sta.pop_back();
 	sta.push_back({ " ",beg," "," "});
 	l++;
-	string temp[4] = { "j","-","-","0" };
+	string temp[4] = { "j*","-","-","0" };
 	gen_quad(temp);
 	insert(name, "procedure",beg1,/*end*/0,/*ret*/0);
 	nowproc = name;
@@ -478,22 +486,30 @@ void mid::f_47() {//P->kWlM	 //while Óï¾ä´ý¼Ó
 }
 void mid::f_48() {//R->m(p1)
 	sta.pop_back();
+	int thenum = stoi(sta[sta.size() - 1].name);
+	sta.pop_back();
+	string p = sta[sta.size() - 1].name;
+	string thetemp[4] = { "push","-","-",p };
+	gen_quad(thetemp);
 	sta.pop_back();
 	sta.pop_back();
 	sta.pop_back();
-	sta.pop_back();
-	string temp[4] = { "read","-","-","-"};
+	string temp[4] = { "read","-","-",to_string(thenum + 1) };
 	gen_quad(temp);
 	string next = to_string(code.size());
 	sta.push_back({" ",next," "," "});
 }
 void mid::f_49() {//S->n(p1)
 	sta.pop_back();
+	int thenum = stoi(sta[sta.size() - 1].name);
+	sta.pop_back();
+	string p = sta[sta.size() - 1].name;
+	string thetemp[4] = { "push","-","-",p };
+	gen_quad(thetemp);
 	sta.pop_back();
 	sta.pop_back();
 	sta.pop_back();
-	sta.pop_back();
-	string temp[4] = { "write","-","-","-" };
+	string temp[4] = { "write","-","-",to_string(thenum+1)};
 	gen_quad(temp);
 	string next = to_string(code.size());
 	sta.push_back({ " ",next," "," " });

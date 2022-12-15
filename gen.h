@@ -1,7 +1,7 @@
 #include<vector>
 #include "table.h"
 #include <iostream>
-#include "mid.h"
+#include "object.h"
 using namespace std;
 class gen {
 public:

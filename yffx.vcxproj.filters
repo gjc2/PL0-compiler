@@ -85,6 +85,21 @@
     <None Include="table.csv">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="..\cffx\PL0_code\PL0_code.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="..\cffx\PL0_code\PL0_code0.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="..\cffx\PL0_code\PL0_code1.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="..\cffx\PL0_code\PL0_code2.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="..\cffx\PL0_code\PL0_code3.in">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="output.txt">
@@ -94,6 +109,9 @@
       <Filter>资源文件</Filter>
     </Text>
     <Text Include="sym.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="object_code.txt">
       <Filter>资源文件</Filter>
     </Text>
   </ItemGroup>

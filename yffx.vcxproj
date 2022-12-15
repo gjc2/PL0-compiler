@@ -151,11 +151,17 @@
     <ClInclude Include="tools.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\cffx\PL0_code\PL0_code.in" />
+    <None Include="..\cffx\PL0_code\PL0_code0.in" />
+    <None Include="..\cffx\PL0_code\PL0_code1.in" />
+    <None Include="..\cffx\PL0_code\PL0_code2.in" />
+    <None Include="..\cffx\PL0_code\PL0_code3.in" />
     <None Include="README.md" />
     <None Include="table.csv" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="mid_code.txt" />
+    <Text Include="object_code.txt" />
     <Text Include="output.txt" />
     <Text Include="sym.txt" />
   </ItemGroup>
