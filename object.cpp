@@ -44,6 +44,7 @@ objectcode::objectcode(mid* t) {
 				backto.push_back({ begin-1,stoi(nowmid->q[3]) });
 				nol = lookup(t, now);
 				end = table[nol]->level;//子程序的终点
+				table[nol]->level = begin ;
 				gen("INT", "0", to_string(count_data(t, nol+1) + 3));
 				//backto.push_back({ all_num,stoi(nowmid->q[3]) });
 				now++;
@@ -342,7 +343,16 @@ objectcode::objectcode(mid* t) {
 				}
 			}
 			else if (nowmid->q[0] == "j_call") {
-				;
+				string op3=nowmid->q[3];
+				int nol;
+				for (int i = 0; i < table.size(); i++) {
+					if (table[i]->kind == "procedure" || table[i]->name == op3) {
+						nol = i;
+					}
+					else
+						continue;
+				}
+				gen("CAL", "0", to_string(table[nol]->level));
 			}
 			else if (nowmid->q[0] == "jodd") {
 			string op1 = nowmid->q[1];
@@ -440,29 +450,41 @@ int objectcode::lookup2(mid* t, string name) {
 	return -1;
 }
 void objectcode::gen(string op, string l, string a) {
-	object_code.push_back(new pcode(op, l, a));
-	if (op == "LIT" || op == "LOD") {
-		code_num++;
-		data_num++;
+	if (op != "#") {
+		object_code.push_back(new pcode(op, l, a));
+		if (op == "LIT" || op == "LOD") {
+			code_num++;
+			data_num++;
+		}
+		else if (op == "OPR")
+			code_num--;
+		else if (op == "STO") {
+			code_num--;
+			data_num++;
+		}
+		else if (op == "JMP" || op == "JPC")
+			;//code_num--;
+		else if (op == "CAL") {
+			;//call指令
+		}
+		all_num++;
 	}
-	else if (op == "OPR" )
-		code_num--;
-	else if (op == "STO") {
-		code_num--;
-		data_num++;
+	else {
+		object_code.push_back(new pcode(op, l, a));
 	}
-	else if (op == "JMP" || op == "JPC")
-		;//code_num--;
-	else if (op == "CAL") {
-		;//call指令
-	}
-	all_num++;
 }
 
 void objectcode::show() {
 	ofstream file("object_code.txt"/*, ios::app*/);
+	int s = 0;
 	for (int i = 0; i < object_code.size(); i++) {
-		file <<i<<": "<< object_code[i]->op << " " << object_code[i]->l << " " << object_code[i]->a << endl;
+		if (object_code[i]->op != "#") {
+			file << s << ": " << object_code[i]->op << " " << object_code[i]->l << " " << object_code[i]->a << endl;
+			s++;
+		}
+		else {
+			file << " " << object_code[i]->op << " " << object_code[i]->l << " " << object_code[i]->a << endl;
+		}
 	}
 	file.close();
 	cout << 1 << endl;
