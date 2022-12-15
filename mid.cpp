@@ -336,7 +336,7 @@ void mid::f_34() {//V->3YU
 	insert(tempvar1, "tempvar", "0", l, dx);
 	dx++;
 	newtemp++;
-	string temp1[4] = { "+",tempvar,u,tempvar1 };
+	string temp1[4] = { "+",u,tempvar,tempvar1 };
 	gen_quad(temp1);
 	sta.push_back({tempvar1," "," "," "});
 }
@@ -387,7 +387,7 @@ void mid::f_39() {//Y->ZX
 	insert(tempvar, "tempvar", "0", l, dx);
 	dx++;
 	newtemp++;
-	string temp[4] = { symbol,z,x,tempvar };
+	string temp[4] = { symbol,x,z,tempvar };
 	gen_quad(temp);
 	sta.push_back({tempvar," "," "," "});
 }
@@ -449,7 +449,7 @@ void mid::f_46() {//Q->jp //应该加跳转
 	string p = sta[sta.size() - 1].name;
 	sta.pop_back();
 	if (lookup(p)!=-1) {
-		string tempp[4] = { "j","-","-",m[lookup(p)]->var};
+		string tempp[4] = { "j_call","-","-",m[lookup(p)]->var};
 		gen_quad(tempp);
 		m[lookup(p)]->addr = code.size();
 		code[m[lookup(p)]->level]->q[3] =to_string( m[lookup(p)]->addr);
