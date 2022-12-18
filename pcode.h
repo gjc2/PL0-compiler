@@ -12,4 +12,5 @@ public:
 		l = _l;
 		a = _a;
 	}
+	pcode(){}
 };

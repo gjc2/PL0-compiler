@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="entry.cpp" />
     <ClCompile Include="gen.cpp" />
+    <ClCompile Include="interpreter.cpp" />
+    <ClCompile Include="interpreter.h" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="mid.cpp" />
     <ClCompile Include="object.cpp" />
