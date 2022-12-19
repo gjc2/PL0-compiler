@@ -21,7 +21,10 @@ int main() {
     mymid=generate(sym, name, the_rule, lr,"sym.txt","mid_code.txt");
     //目标代码生成
     //mid.h中存放着中间代码和符号表
-    genobjectcode(mymid);
+    objectcode* obj;
+    obj=genobjectcode(mymid);
+    //解释执行
+    runobjectcode(obj);
 }
 
 

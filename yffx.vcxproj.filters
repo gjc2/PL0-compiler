@@ -106,6 +106,21 @@
     <None Include="..\cffx\PL0_code\PL0_code3.in">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="PL0_code\PL0_code.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="PL0_code\PL0_code0.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="PL0_code\PL0_code1.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="PL0_code\PL0_code2.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="PL0_code\PL0_code3.in">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="output.txt">

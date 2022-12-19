@@ -478,7 +478,7 @@ void mid::f_47() {//P->kWlM	 //while Óï¾ä´ý¼Ó
 	
 	backpatch(next, nextquad2);
 	backpatch(t, nextquad1);
-	code[stoi(f)]->q[3] = next;
+	code[stoi(f)]->q[3] = to_string(stoi(next)+1);
 	string snext = f;
 	string temp[4] = { "j","-","-",nextquad2 };
 	gen_quad(temp);

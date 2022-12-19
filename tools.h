@@ -9,4 +9,5 @@ void set_type();
 item* DFA_construct(vector<rule*>m,/*int level,*/ vector<rule*> add, item* fa);
 table* dfs_dfa(vector<rule*>x,vector<rule*>y);
 mid* generate(vector<string>sym, vector<string>name, vector<rule*>the_rule, table* lr, string lr_table, string mid_code);
-void genobjectcode(mid* mymid);
+objectcode* genobjectcode(mid* mymid);
+void runobjectcode(objectcode* obj);

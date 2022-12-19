@@ -15,6 +15,7 @@ public:
 	vector<pair<int, int> >backto;
 	mid* midcode = new mid();
 	objectcode(mid* t);
+	objectcode(){}
 	void gen(string op, string l, string a);
 	int lookup(mid* t,int nol);
 	int lookup2(mid* t, string name);

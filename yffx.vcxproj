@@ -158,6 +158,11 @@
     <None Include="..\cffx\PL0_code\PL0_code1.in" />
     <None Include="..\cffx\PL0_code\PL0_code2.in" />
     <None Include="..\cffx\PL0_code\PL0_code3.in" />
+    <None Include="PL0_code\PL0_code.in" />
+    <None Include="PL0_code\PL0_code0.in" />
+    <None Include="PL0_code\PL0_code1.in" />
+    <None Include="PL0_code\PL0_code2.in" />
+    <None Include="PL0_code\PL0_code3.in" />
     <None Include="README.md" />
     <None Include="table.csv" />
   </ItemGroup>
