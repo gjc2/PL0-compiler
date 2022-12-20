@@ -40,7 +40,7 @@ void gen::g(table t, vector<rule*>origin) {
 		if (temp == "ACC") { 
 			std::cout << "ok" << endl; 
 			midcode->show();
-			cout << midcode->type << endl;
+			//cout << midcode->type << endl;
 			return; 
 		}
 		if (temp[0] == 'S') {
@@ -90,7 +90,7 @@ void gen::g(table t, vector<rule*>origin) {
 				ss = t.f[{state[len1], sym[len3]}][0][0] - '0';
 			}
 			state.push_back(ss);
-			r->show();
+			//r->show();
 			(midcode->*mid::func[s])();
 		}
 		else {
@@ -107,7 +107,7 @@ void gen::g(table t, vector<rule*>origin) {
 			in.pop_back();
 			
 		}
-		show();
+		//show();
 	}
 	
 }

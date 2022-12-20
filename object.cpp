@@ -45,7 +45,7 @@ objectcode::objectcode(mid* t) {
 			if (lookup(t, now) != -1) {
 				gen("JMP", "0", "0");
 				begin = all_num;//子程序的起点
-				cout << end << endl;
+				//cout << end << endl;
 				backto.push_back({ begin-1,stoi(nowmid->q[3]) });
 				nol = lookup(t, now);
 				end = table[nol]->level;//子程序的终点
@@ -397,7 +397,7 @@ void objectcode::show() {
 		}
 	}
 	file.close();
-	cout << 1 << endl;
+	//cout << 1 << endl;
 }
 
 int objectcode::count_data(mid* t,int s) {

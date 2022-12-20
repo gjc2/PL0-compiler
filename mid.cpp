@@ -181,7 +181,7 @@ void mid::f_16() {//E->LB;J
 	sta.push_back({ " ",next," "," " });
 	l--;
 	nowproc = "main";
-	cout << beg<<" "<<next << endl;
+	//cout << beg<<" "<<next << endl;
 }
 void mid::f_17() {//J->EJ
 	string next = sta[sta.size() - 1].next;
@@ -568,7 +568,7 @@ void mid::backpatch(string t, string q) {
 	int nx;
 	if (n == 0) {
 		code[n]->q[3] = q;
-		cout << 1 << endl;
+		//cout << 1 << endl;
 	}
 	else {
 		while (code[n]->q[0][0] == 'j' && n != 0) {
