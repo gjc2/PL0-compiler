@@ -11,7 +11,7 @@ int main() {
     //建立DFA和分析表
     table* lr=dfs_dfa(back_rule,the_rule);
    //读取实例
-    pair<vector<string>,vector<string>>word=read_instance("output.txt");
+    pair<vector<string>,vector<string>>word=read_instance("PL0_code//code0.txt");
     vector<string>sym=word.first;
     vector<string>name=word.second;
     std::reverse(sym.begin(), sym.end());

@@ -1,0 +1,4 @@
+sym$
+a$p$=$o$;$b$p$,$p$;$c$p$;$e$p$d$p$q$p$f$;$e$m$($p$)$;$k$p$s$o$l$e$j$p$;$n$($p$)$;$m$($p$)$;$f$f$!$#$
+name$
+const$a$=$10$;$var$b$,$c$;$procedure$p$;$begin$c$:=$b$+$a$end$;$begin$read$($b$)$;$while$b$#$0$do$begin$call$p$;$write$($c$)$;$read$($b$)$;$end$end$!$#$

@@ -13,13 +13,14 @@ interpreter::interpreter(vector<pcode*>c) {
 	while (1) {
 		//cout << p << endl;
 		/*cout << "**" << endl;
+		
 		for (int i = s.size()-1; i >=0; i--) {
 			cout << s[i] << endl;
 		}
 		cout << "**" << endl;*/
 		if (p >= code.size()) break;
 		instruction = *code[p];
-
+		//cout << instruction.op << endl;
 		if (instruction.op == "LIT") {
 			s.push_back(stoi(instruction.a));
 			t++;
@@ -110,12 +111,14 @@ interpreter::interpreter(vector<pcode*>c) {
 				}
 				b = dl;
 				p = ra;
+				p--;
 				//cout << b << " " << p << endl;
 			}
 			else if (instruction.a == "1") {
 				int value1 = s[t];
 				int value2 = s[t - 1];
 				int ans = value1 + value2;
+				
 				s.pop_back();
 				t--;
 				s.pop_back();
@@ -247,6 +250,19 @@ interpreter::interpreter(vector<pcode*>c) {
 				t--;
 				s.push_back(ans);
 				t++;
+			}
+			else if (instruction.a == "13") {
+			int value1 = s[t];
+			int value2 = s[t - 1];
+			int ans = 0;
+			if (value2 != value1) ans = 1;
+			else ans = 0;
+			s.pop_back();
+			t--;
+			s.pop_back();
+			t--;
+			s.push_back(ans);
+			t++;
 			}
 			p++;
 		}

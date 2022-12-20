@@ -19,6 +19,7 @@ OPR 9 >=
 OPR 10 read
 OPR 11 write
 OPR 12 jodd
+OPR 13 #²»µÈÓÚ
 */
 objectcode::objectcode(mid* t) {
 	//mid
@@ -69,8 +70,12 @@ objectcode::objectcode(mid* t) {
 				//op1
 				if (lookup2(t, op1) != -1) {
 					int pos = lookup2(t, op1);
-					if (table[pos]->kind == "variable")
-						gen("LOD", to_string(ll-table[pos]->level), to_string(xpos(t,pos)));
+					if (table[pos]->kind == "variable") {
+						int thel = 0;
+						if (table[pos]->level >= 1) thel = 1;
+						gen("LOD", to_string(ll-thel), to_string(xpos(t,pos)));
+					}
+						
 					else if(table[pos]->kind == "constant")
 						gen("LIT", "0", table[pos]->var);
 				}
@@ -85,8 +90,11 @@ objectcode::objectcode(mid* t) {
 				//op2
 				if (lookup2(t, op2) != -1) {
 					int pos = lookup2(t, op2);
-					if (table[pos]->kind == "variable" )
-						gen("LOD", to_string(ll-table[pos]->level), to_string(xpos(t, pos)));
+					if (table[pos]->kind == "variable") {
+						int thel = 0;
+						if (table[pos]->level >= 1) thel = 1;
+						gen("LOD", to_string(ll - thel), to_string(xpos(t, pos)));
+					}
 					else if (table[pos]->kind == "constant")
 						gen("LIT", "0", table[pos]->var);
 				}
@@ -127,7 +135,9 @@ objectcode::objectcode(mid* t) {
 					gen("LOD", to_string(table[pos]->level), to_string(pos));
 				}*/
 				pos = lookup2(t, op3);
-				gen("STO", to_string(ll-table[pos]->level), to_string(xpos(t, pos)));
+				int thel = 0;
+				if (table[pos]->level >= 1) thel = 1;
+				gen("STO", to_string(ll-thel), to_string(xpos(t, pos)));
 			}
 			else if (nowmid->q[0] == "j") {
 				gen("JMP", "0", "0");
@@ -212,8 +222,11 @@ objectcode::objectcode(mid* t) {
 						string op = nowmid2->q[3];
 						if (lookup2(t, op) != -1) {
 							int pos = lookup2(t, op);
-							if (table[pos]->kind == "variable" || table[pos]->kind == "tempvar")
-								gen("STO", to_string(ll-table[pos]->level), to_string(xpos(t, pos)));
+							if (table[pos]->kind == "variable" || table[pos]->kind == "tempvar") {
+								int thel = 0;
+								if (table[pos]->level >= 1) thel = 1;
+								gen("STO", to_string(ll - thel), to_string(xpos(t, pos)));
+							}
 							else
 								gen("LIT", "0", table[pos]->var);
 						}
@@ -251,13 +264,31 @@ objectcode::objectcode(mid* t) {
 				object_code[all_num - 1]->a = to_string(jm[stoi(nowmid->q[3])]);
 			}
 			}
+			else if (nowmid->q[0] == "j#") {
+			string op1 = nowmid->q[1];
+			string op2 = nowmid->q[2];
+			string op3 = nowmid->q[3];
+			//op1
+
+			gen("OPR", "0", "13");
+			gen("JPC", "0", "0");
+			backto.push_back({ all_num - 1,stoi(nowmid->q[3]) });
+			if (i >= stoi(nowmid->q[3])) {
+				object_code[all_num - 1]->a = to_string(jm[stoi(nowmid->q[3])]);
+			}
+			}
+			
 			else if (nowmid->q[0] == "push") {
 				push_num++;
 				string op = nowmid->q[3];
 				if (lookup2(t, op) != -1) {
 					int pos = lookup2(t, op);
-					if (table[pos]->kind == "variable" || table[pos]->kind == "tempvar")
-						gen("LOD", to_string(ll-table[pos]->level), to_string(xpos(t, pos)));
+					if (table[pos]->kind == "variable" || table[pos]->kind == "tempvar") {
+						int thel = 0;
+						if (table[pos]->level >= 1) thel = 1;
+						gen("LOD", to_string(ll - thel), to_string(xpos(t, pos)));
+					}
+						
 					else
 						gen("LIT", "0", table[pos]->var);
 				}
