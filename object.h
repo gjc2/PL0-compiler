@@ -22,4 +22,5 @@ public:
 	void show();
 	int count_data(mid* t, int s);
 	int need(int s);
+	int xpos(mid* t, int pos);
 };

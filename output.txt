@@ -1,4 +1,4 @@
 sym$
-a$p$=$o$;$b$p$,$p$,$p$;$c$p$;$b$p$;$e$p$d$p$r$o$;$p$d$p$r$o$;$h$p$s$p$i$p$d$p$q$p$f$;$e$m$($p$,$p$)$;$n$($p$,$p$,$p$)$;$j$p$;$k$g$p$l$p$d$q$p$q$o$f$!$#$
+a$p$=$o$;$b$p$,$p$;$c$p$;$b$p$;$e$p$d$o$;$p$d$o$;$k$p$s$p$l$e$h$p$r$p$r$p$s$p$i$e$p$d$o$;$p$d$p$f$;$p$d$p$q$o$f$f$;$c$p$;$e$p$d$o$;$k$p$s$p$l$e$j$p$;$h$p$s$o$i$n$($p$)$;$p$d$p$q$o$f$f$;$j$p$!$#$
 name$
-const$a$=$10$;$var$d$,$e$,$f$;$procedure$p$;$var$g$;$begin$d$:=$a$*$2$;$e$:=$a$/$3$;$if$d$<=$e$then$f$:=$d$+$e$end$;$begin$read$($e$,$f$)$;$write$($e$,$f$,$d$)$;$call$p$;$while$odd$d$do$e$:=$-$e$+$1$end$!$#$
+const$max$=$100$;$var$arg$,$ret$;$procedure$isprime$;$var$i$;$begin$ret$:=$1$;$i$:=$2$;$while$i$<$arg$do$begin$if$i$*$arg$/$i$==$arg$then$begin$ret$:=$0$;$i$:=$arg$end$;$i$:=$i$+$1$end$end$;$procedure$primes$;$begin$arg$:=$2$;$while$arg$<$max$do$begin$call$isprime$;$if$ret$==$1$then$write$($arg$)$;$arg$:=$arg$+$1$end$end$;$call$primes$!$#$

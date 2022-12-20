@@ -11,7 +11,12 @@ interpreter::interpreter(vector<pcode*>c) {
 	s.push_back(0);
 	t = t + 2;
 	while (1) {
-		cout << p << endl;
+		//cout << p << endl;
+		/*cout << "**" << endl;
+		for (int i = s.size()-1; i >=0; i--) {
+			cout << s[i] << endl;
+		}
+		cout << "**" << endl;*/
 		if (p >= code.size()) break;
 		instruction = *code[p];
 
@@ -28,14 +33,14 @@ interpreter::interpreter(vector<pcode*>c) {
 				p++;
 			}
 			else if (instruction.l == "1") {
-				int last = s[b + 2];//SL
+				int last = s[b + 1];//SL
 				s.push_back(s[last + 3 + stoi(instruction.a)]);
 				t++;
 				p++;
 			}
 			else if (instruction.l == "2") {
-				int last1 = s[b + 2];
-				int last2 = s[last1 + 2];
+				int last1 = s[b + 1];
+				int last2 = s[last1 + 1];
 				s.push_back(s[last2 + 3 + stoi(instruction.a)]);
 				t++;
 				p++;
@@ -48,13 +53,13 @@ interpreter::interpreter(vector<pcode*>c) {
 				p++;
 			}
 			else if (instruction.l == "1") {
-				int last = s[b + 2];
+				int last = s[b + 1];
 				s[last + 3 + stoi(instruction.a)] = value;
 				p++;
 			}
 			else if (instruction.l == "2") {
-				int last1 = s[b + 2];
-				int last2 = s[last1 + 2];
+				int last1 = s[b + 1];
+				int last2 = s[last1 + 1];
 				s[last2 + 3 + stoi(instruction.a)] = value;
 				p++;
 			}
@@ -105,6 +110,7 @@ interpreter::interpreter(vector<pcode*>c) {
 				}
 				b = dl;
 				p = ra;
+				//cout << b << " " << p << endl;
 			}
 			else if (instruction.a == "1") {
 				int value1 = s[t];
@@ -143,6 +149,7 @@ interpreter::interpreter(vector<pcode*>c) {
 				int value1 = s[t];
 				int value2 = s[t - 1];
 				int ans = value1 / value2;
+				//cout << ans << endl;
 				s.pop_back();
 				t--;
 				s.pop_back();
