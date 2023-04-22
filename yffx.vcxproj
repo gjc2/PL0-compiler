@@ -129,8 +129,11 @@
   <ItemGroup>
     <ClCompile Include="entry.cpp" />
     <ClCompile Include="gen.cpp" />
+    <ClCompile Include="interpreter.cpp" />
+    <ClCompile Include="interpreter.h" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="mid.cpp" />
+    <ClCompile Include="object.cpp" />
     <ClCompile Include="rule.cpp" />
     <ClCompile Include="table.cpp" />
     <ClCompile Include="tools.cpp" />
@@ -142,18 +145,31 @@
     <ClInclude Include="gen.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="mid.h" />
+    <ClInclude Include="object.h" />
+    <ClInclude Include="pcode.h" />
     <ClInclude Include="quadruple.h" />
     <ClInclude Include="rule.h" />
     <ClInclude Include="table.h" />
     <ClInclude Include="tools.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="PL0_code\PL0_code.in" />
+    <None Include="PL0_code\PL0_code0.in" />
+    <None Include="PL0_code\PL0_code1.in" />
+    <None Include="PL0_code\PL0_code2.in" />
+    <None Include="PL0_code\PL0_code3.in" />
     <None Include="README.md" />
     <None Include="table.csv" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="mid_code.txt" />
+    <Text Include="object_code.txt" />
     <Text Include="output.txt" />
+    <Text Include="PL0_code\code.txt" />
+    <Text Include="PL0_code\code0.txt" />
+    <Text Include="PL0_code\code1.txt" />
+    <Text Include="PL0_code\code2.txt" />
+    <Text Include="PL0_code\code3.txt" />
     <Text Include="sym.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

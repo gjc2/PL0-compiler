@@ -39,6 +39,15 @@
     <ClCompile Include="tools.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="interpreter.h">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="interpreter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rule.h">
@@ -68,12 +77,33 @@
     <ClInclude Include="tools.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="object.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pcode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md">
       <Filter>资源文件</Filter>
     </None>
     <None Include="table.csv">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="PL0_code\PL0_code.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="PL0_code\PL0_code0.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="PL0_code\PL0_code1.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="PL0_code\PL0_code2.in">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="PL0_code\PL0_code3.in">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
@@ -85,6 +115,24 @@
       <Filter>资源文件</Filter>
     </Text>
     <Text Include="sym.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="object_code.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="PL0_code\code.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="PL0_code\code0.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="PL0_code\code1.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="PL0_code\code2.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="PL0_code\code3.txt">
       <Filter>资源文件</Filter>
     </Text>
   </ItemGroup>

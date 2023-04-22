@@ -122,9 +122,9 @@ pair<vector<rule*>,vector<rule*> > read_rule() {
 
     for (int i = 0; i < 54; i++) {
         x[i]->back_rule();
-        x[i]->show();
+        //x[i]->show();
         y[i]->numm = i;
-        cout << endl;
+        //cout << endl;
     }
     return { x,y };
 }
@@ -157,12 +157,12 @@ pair<vector<string>, vector<string> > read_instance(string file) {
     return{ sym,name };
 }
 table* dfs_dfa(vector<rule*>x, vector<rule*>y) {
-    cout << "DFA:" << endl;
+    //cout << "DFA:" << endl;
     vector<rule*> p;
     p.push_back(new rule(x[0]->r_l[0], x[0]->r_r[0]));
     set_type();
     DFA_construct(x, p, 0);
-    for (int i = 0; i < dfa.size(); i++) dfa[i]->show_all();
+    //for (int i = 0; i < dfa.size(); i++) dfa[i]->show_all();
     vector<string>N = { "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6" };
     vector<string>T = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","#",",",";","(",")","!","=" };
     table* test = new table(dfa, T, N, y);
@@ -303,11 +303,25 @@ void set_type() {
     type["5"] = 0;
 }
 
-void generate(vector<string>sym, vector<string>name, vector<rule*>the_rule, table* lr,string lr_table,string mid_code) {
+mid* generate(vector<string>sym, vector<string>name, vector<rule*>the_rule, table* lr,string lr_table,string mid_code) {
     gen* g = new gen();
     g->in = sym;
     g->in_p = name;
     g->lr_table = lr_table;
     g->mid_code = mid_code;
     g->g(*lr, the_rule);
+    return g->midcode;
+}
+
+
+objectcode* genobjectcode(mid* mymid) {
+    objectcode* ans=new objectcode(mymid);
+    ans->show();
+    return ans;
+}
+
+
+void runobjectcode(objectcode* obj) {
+    interpreter* run = new interpreter(obj->object_code);
+
 }
